@@ -24,7 +24,7 @@ namespace PhoneApp1
             BuildBeads();
             LinkBeads();
             AddBeadsToRod();
-            SetColor();
+            //SetColor();
             Canvas.SetLeft(rod, 0);
             rod.Width = ROD_WIDTH;
             rod.Height = BEAD_SIZE;

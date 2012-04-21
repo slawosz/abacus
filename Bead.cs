@@ -50,10 +50,10 @@ namespace PhoneApp1
         {
             Color c = new Color();
             c.R = (byte)left;
-            c.B = 40;
+            c.B = (byte)((40 * (byte)left) % (byte)255);
             c.G = 255;
-            c.A = 255;
-
+            c.A = 200;
+            
             this.bead.Background = new SolidColorBrush(c); 
         }
 
@@ -96,7 +96,11 @@ namespace PhoneApp1
         {
             if ((this.rightBead != null) && RightBeadWillBePushed(x))
             {
-                return (rightBead.MoveRightBeadBy(x));
+                if (rightBead.MoveRightBeadBy(x))
+                {
+                    rightBead.MoveBeadBy(x);
+                    return true;
+                }
             }
             if (this.rightBead == null)
             {
@@ -106,26 +110,33 @@ namespace PhoneApp1
                 }
                 else
                 {
-                    MoveBeadBy(x);
+                    //MoveBeadBy(x);
                     return true;
                 }
             }
             else 
             {
-                MoveBeadBy(x);
-                return true;
+                //MoveBeadBy(x);
+                if (RightBeadWillBePushed(x))
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
         }
 
         // does this method should include checking if rightBead exists?
         private bool RightBeadWillBePushed(Double x)
         {
-            return (((Canvas.GetLeft(bead) + Rod.BEAD_SIZE) >= Canvas.GetLeft(rightBead.GetBead())) && !rightBead.EndReached(x));
+            return ((Canvas.GetLeft(bead) + Rod.BEAD_SIZE + x) >= Canvas.GetLeft(rightBead.GetBead()));
         }
 
         private bool EndReached(Double x)
         {
-            return (Canvas.GetLeft(bead) + Rod.BEAD_SIZE + x) >= Rod.ROD_WIDTH;
+            return ((Canvas.GetLeft(bead) + Rod.BEAD_SIZE + x) >= Rod.ROD_WIDTH);
         }
 
         // ==========================================================================
