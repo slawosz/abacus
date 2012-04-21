@@ -26,7 +26,7 @@ namespace PhoneApp1
             Canvas.SetLeft(bead, left);
             bead.Width = size;
             bead.Height = size;
-            SetColor();
+            SetColor(left);
             BindManipulationEvent();
         }
 
@@ -46,11 +46,11 @@ namespace PhoneApp1
             this.leftBead = leftBead;
         }
 
-        private void SetColor()
+        private void SetColor(int left)
         {
             Color c = new Color();
-            c.R = 255;
-            c.B = 0;
+            c.R = (byte)left;
+            c.B = 40;
             c.G = 255;
             c.A = 255;
 
@@ -75,30 +75,28 @@ namespace PhoneApp1
             }
             else
             {
-                MoveLeft(x);
+             //   MoveLeft(x);
             }
                 
         }
 
+        // ==========================================================================
         // Moving right logic
+        // ==========================================================================
+        
         protected void MoveRight(Double x)
         {
             if (MoveRightBeadBy(x))
             {
                 MoveBeadBy(x);
             }
-            
         }
 
         private bool MoveRightBeadBy(Double x)
         {
             if ((this.rightBead != null) && RightBeadWillBePushed(x))
             {
-                return rightBead.MoveRightBeadBy(x);
-            }
-            if (this.rightBead != null)
-            {
-                return true;
+                return (rightBead.MoveRightBeadBy(x));
             }
             if (this.rightBead == null)
             {
@@ -112,13 +110,17 @@ namespace PhoneApp1
                     return true;
                 }
             }
-            return false;
+            else 
+            {
+                MoveBeadBy(x);
+                return true;
+            }
         }
 
         // does this method should include checking if rightBead exists?
         private bool RightBeadWillBePushed(Double x)
         {
-            return (Canvas.GetLeft(bead) + Rod.BEAD_SIZE) >= Canvas.GetLeft(rightBead.GetBead());
+            return (((Canvas.GetLeft(bead) + Rod.BEAD_SIZE) >= Canvas.GetLeft(rightBead.GetBead())) && !rightBead.EndReached(x));
         }
 
         private bool EndReached(Double x)
@@ -126,7 +128,9 @@ namespace PhoneApp1
             return (Canvas.GetLeft(bead) + Rod.BEAD_SIZE + x) >= Rod.ROD_WIDTH;
         }
 
+        // ==========================================================================
         // Moving left logic
+        // ==========================================================================
         protected void MoveLeft(Double x)
         {
             if (MoveLeftBeadBy(x))
@@ -148,7 +152,7 @@ namespace PhoneApp1
             }
             if (this.leftBead == null)
             {
-                if (EndReached(x))
+                if (StartReached(x))
                 {
                     return false;
                 }
