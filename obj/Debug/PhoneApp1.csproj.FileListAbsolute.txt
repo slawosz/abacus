@@ -1,0 +1,13 @@
+C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\Bin\Debug\ApplicationIcon.png
+C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\Bin\Debug\Background.png
+C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\Bin\Debug\PhoneApp1.dll
+C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\Bin\Debug\PhoneApp1.pdb
+C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\obj\Debug\App.g.i.cs
+C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\obj\Debug\MainPage.g.i.cs
+C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\obj\Debug\PhoneApp1.g.resources
+C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\obj\Debug\PhoneApp1.dll
+C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\obj\Debug\PhoneApp1.pdb
+C:\Users\slawosz\Documents\Visual Studio 2010\Projects\Abacus\PhoneApp1\Bin\Debug\AppManifest.xaml
+C:\Users\slawosz\Documents\Visual Studio 2010\Projects\Abacus\PhoneApp1\Bin\Debug\PhoneApp1.xap
+C:\Users\slawosz\Documents\Visual Studio 2010\Projects\Abacus\PhoneApp1\obj\Debug\XapCacheFile.xml
