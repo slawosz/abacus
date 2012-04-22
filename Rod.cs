@@ -14,9 +14,11 @@ namespace PhoneApp1
     public class Rod
     {
         public static int BEAD_SIZE = 50;
-        public static int BEADS_COUNT = 7;
+        public static int BEADS_COUNT = 4;
         public static int FREE_SPACE = 70;
         public static int ROD_WIDTH = BEAD_SIZE * BEADS_COUNT + FREE_SPACE;
+        public static int DISTINCT_SPACE = (int)((Double)FREE_SPACE * 0.75);
+        public Int16 value = 0;
       
         Canvas rod = new Canvas();
         Bead[] beads = new Bead[BEADS_COUNT];
@@ -70,6 +72,19 @@ namespace PhoneApp1
             c.A = 255;
 
             this.rod.Background = new SolidColorBrush(c); 
+        }
+
+        public void SetRodValue() 
+        {
+            value = 0;
+            for (int i = 0; i < BEADS_COUNT - 1; i++)
+            {
+                if ((Canvas.GetLeft(beads[i + 1].GetBead()) - (Canvas.GetLeft(beads[i].GetBead()) + BEAD_SIZE)) > DISTINCT_SPACE)
+                {
+                    value = (Int16)(i + 1);
+                }
+            }
+            System.Diagnostics.Debug.WriteLine(value.ToString());
         }
 
     }

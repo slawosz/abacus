@@ -18,13 +18,10 @@ namespace PhoneApp1
         private Bead leftBead;
         private Bead rightBead;
         private Rod rod;
-        private int left;
-        private int spaceUsed = 0;
 
         public Bead(Rod rod, int size, int left)
         {
             this.rod = rod;
-            this.left = left;
             bead = new Canvas();
             Canvas.SetLeft(bead, left);
             bead.Width = size;
@@ -80,7 +77,8 @@ namespace PhoneApp1
             {
               MoveLeft(x);
             }
-                
+
+            rod.SetRodValue();
         }
 
         // ==========================================================================
