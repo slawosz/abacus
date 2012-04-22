@@ -20,7 +20,9 @@ namespace PhoneApp1
         {
             InitializeComponent();
             Rod rod = new Rod();    
+            Rod shortRod = new ShortRod();    
             ContentPanel.Children.Add(rod.GetRod());
+            ContentPanel.Children.Add(shortRod.GetRod());
         }
 
         public void PhoneApplicationPage_IsEnabledChanged()

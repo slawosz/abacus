@@ -69,6 +69,7 @@
     <Compile Include="MoveRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rod.cs" />
+    <Compile Include="ShortRod.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

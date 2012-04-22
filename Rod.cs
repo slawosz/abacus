@@ -8,6 +8,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using System.Collections.Generic;
 
 namespace PhoneApp1
 {
@@ -18,7 +19,8 @@ namespace PhoneApp1
         public static int FREE_SPACE = 70;
         public static int ROD_WIDTH = BEAD_SIZE * BEADS_COUNT + FREE_SPACE;
         public static int DISTINCT_SPACE = (int)((Double)FREE_SPACE * 0.75);
-        public Int16 value = 0;
+        public int value = 0;
+        private Dictionary<int, int> beadsValues = new Dictionary<int,int>();
       
         Canvas rod = new Canvas();
         Bead[] beads = new Bead[BEADS_COUNT];
@@ -28,6 +30,7 @@ namespace PhoneApp1
             BuildBeads();
             LinkBeads();
             AddBeadsToRod();
+            PrepareBeadsValuesDictionary();
             SetColor();
             Canvas.SetLeft(rod, 0);
             rod.Width = ROD_WIDTH;
@@ -74,17 +77,35 @@ namespace PhoneApp1
             this.rod.Background = new SolidColorBrush(c); 
         }
 
+        private void PrepareBeadsValuesDictionary()
+        {
+            int actualValue = BEADS_COUNT;
+            for (int i = 0; i < BEADS_COUNT; i++)
+            {
+                beadsValues.Add(i, actualValue);
+                actualValue--;
+            }
+        }
+
         public void SetRodValue() 
         {
             value = 0;
             for (int i = 0; i < BEADS_COUNT - 1; i++)
             {
-                if ((Canvas.GetLeft(beads[i + 1].GetBead()) - (Canvas.GetLeft(beads[i].GetBead()) + BEAD_SIZE)) > DISTINCT_SPACE)
+                if (i == 0 && Canvas.GetLeft(beads[i].GetBead()) > DISTINCT_SPACE)
                 {
-                    value = (Int16)(i + 1);
+                    beadsValues.TryGetValue(i, out value);
+                }
+                else
+                {
+                    if ((Canvas.GetLeft(beads[i + 1].GetBead()) - (Canvas.GetLeft(beads[i].GetBead()) + BEAD_SIZE)) > DISTINCT_SPACE)
+                    {
+                        beadsValues.TryGetValue(i + 1, out value);
+                    }
                 }
             }
             System.Diagnostics.Debug.WriteLine(value.ToString());
+            System.Diagnostics.Debug.WriteLine(beadsValues.ToString());
         }
 
     }
