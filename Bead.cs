@@ -18,10 +18,13 @@ namespace PhoneApp1
         private Bead leftBead;
         private Bead rightBead;
         private Rod rod;
+        private int left;
+        private int spaceUsed = 0;
 
         public Bead(Rod rod, int size, int left)
         {
             this.rod = rod;
+            this.left = left;
             bead = new Canvas();
             Canvas.SetLeft(bead, left);
             bead.Width = size;
@@ -86,110 +89,62 @@ namespace PhoneApp1
         
         protected void MoveRight(Double x)
         {
-            if (MoveRightBeadBy(x))
-            {
-                MoveBeadBy(x);
-            }
+            MoveRequest request = new MoveRequest(this, x);
+            this.SendMoveRightRequest(request);
         }
 
-        private bool MoveRightBeadBy(Double x)
+        private void SendMoveRightRequest(MoveRequest request)
         {
-            if ((this.rightBead != null) && RightBeadWillBePushed(x))
-            {
-                if (rightBead.MoveRightBeadBy(x))
+            if (CanDecideAboutMoveRight(request.x)) {
+                if (IsMoveRightPossible(request.x))
                 {
-                    rightBead.MoveBeadBy(x);
-                    return true;
+                    request.accepted = true;
+                    MoveBy(request.x);
                 }
-            }
-            if (this.rightBead == null)
-            {
-                if (EndReached(x))
+                request.processed = true;
+                if (this != request.sender)
                 {
-                    return false;
-                }
-                else
-                {
-                    //MoveBeadBy(x);
-                    return true;
+                    leftBead.SendMoveRightRequest(request);
                 }
             }
             else 
             {
-                //MoveBeadBy(x);
-                if (RightBeadWillBePushed(x))
+                if (request.accepted)
                 {
-                    return false;
+                    MoveBy(request.x);
                 }
-                else
+                if (this != request.sender || !request.processed)
                 {
-                    return true;
-                }
-            }
-        }
-
-        // does this method should include checking if rightBead exists?
-        private bool RightBeadWillBePushed(Double x)
-        {
-            return ((Canvas.GetLeft(bead) + Rod.BEAD_SIZE + x) >= Canvas.GetLeft(rightBead.GetBead()));
-        }
-
-        private bool EndReached(Double x)
-        {
-            return ((Canvas.GetLeft(bead) + Rod.BEAD_SIZE + x) >= Rod.ROD_WIDTH);
-        }
-
-        // ==========================================================================
-        // Moving left logic
-        // ==========================================================================
-        protected void MoveLeft(Double x)
-        {
-            if (MoveLeftBeadBy(x))
-            {
-                MoveBeadBy(x);
-            }
-            
-        }
-
-        private bool MoveLeftBeadBy(Double x)
-        {
-            if ((this.leftBead != null) && LeftBeadWillBePushed(x))
-            {
-                return leftBead.MoveLeftBeadBy(x);
-            }
-            if (this.leftBead != null)
-            {
-                return true;
-            }
-            if (this.leftBead == null)
-            {
-                if (StartReached(x))
-                {
-                    return false;
-                }
-                else
-                {
-                    MoveBeadBy(x);
-                    return true;
+                    if (request.processed)
+                    {
+                        leftBead.SendMoveRightRequest(request);
+                    }
+                    else
+                    {
+                        rightBead.SendMoveRightRequest(request);
+                    }
                 }
             }
-            return false;
         }
 
-        // does this method should include checking if leftBead exists?
-        private bool LeftBeadWillBePushed(Double x)
-        {
-            return (Canvas.GetLeft(bead) <= (Canvas.GetLeft(leftBead.GetBead()) + Rod.BEAD_SIZE));
+        private bool CanDecideAboutMoveRight(Double x) {
+            return rightBead == null || ((Canvas.GetLeft(GetBead()) + Rod.BEAD_SIZE + x) < Canvas.GetLeft(rightBead.GetBead()));
         }
 
-        private bool StartReached(Double x)
-        {
-            return (Canvas.GetLeft(bead) <= 0);
+        private bool IsMoveRightPossible(Double x) {
+            if (rightBead == null) 
+            {
+                return (Canvas.GetLeft(GetBead()) + x + Rod.BEAD_SIZE) <= Rod.ROD_WIDTH;
+            }
+            else 
+            {
+                return ((Canvas.GetLeft(GetBead()) + Rod.BEAD_SIZE + x) < Canvas.GetLeft(rightBead.GetBead()));
+            }
         }
 
-        private void MoveBeadBy(Double x)
+        public void MoveBy(Double x) 
         {
-            Canvas.SetLeft(bead, Canvas.GetLeft(bead) + x);
+            Canvas.SetLeft(this.GetBead(), Canvas.GetLeft(this.GetBead()) + x);
         }
 
     }

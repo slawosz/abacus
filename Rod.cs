@@ -14,7 +14,9 @@ namespace PhoneApp1
     public class Rod
     {
         public static int BEAD_SIZE = 50;
-        public static int ROD_WIDTH = 300;
+        public static int BEADS_COUNT = 5;
+        public static int FREE_SPACE = 50;
+        public static int ROD_WIDTH = BEAD_SIZE * BEADS_COUNT + FREE_SPACE;
       
         Canvas rod = new Canvas();
         Bead[] beads = new Bead[5];
@@ -24,7 +26,7 @@ namespace PhoneApp1
             BuildBeads();
             LinkBeads();
             AddBeadsToRod();
-            //SetColor();
+            SetColor();
             Canvas.SetLeft(rod, 0);
             rod.Width = ROD_WIDTH;
             rod.Height = BEAD_SIZE;
@@ -37,7 +39,7 @@ namespace PhoneApp1
 
         private void BuildBeads()
         {
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < BEADS_COUNT; i++)
             {
                 beads[i] = new Bead(this, BEAD_SIZE, BEAD_SIZE * i);
             }
@@ -45,7 +47,7 @@ namespace PhoneApp1
 
         private void LinkBeads()
         {
-            for (int i = 1; i < 5; i++)
+            for (int i = 1; i < BEADS_COUNT; i++)
             {
                 beads[i - 1].SetRightBead(beads[i]);   
             }
@@ -53,7 +55,7 @@ namespace PhoneApp1
 
         private void AddBeadsToRod()
         {
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < BEADS_COUNT; i++)
             {
                 rod.Children.Add(beads[i].GetBead());
             }
