@@ -14,11 +14,11 @@ namespace PhoneApp1
 {
     public class Rod
     {
-        public static int BEAD_SIZE = 50;
-        public static int BEADS_COUNT = 4;
-        public static int FREE_SPACE = 70;
-        public static int ROD_WIDTH = BEAD_SIZE * BEADS_COUNT + FREE_SPACE;
-        public static int DISTINCT_SPACE = (int)((Double)FREE_SPACE * 0.75);
+        public static readonly int BEAD_SIZE = 50;
+        public static virtual int BEADS_COUNT { get { return 4; } }
+        public static readonly int FREE_SPACE = 70;
+        public static readonly int ROD_WIDTH = BEAD_SIZE * BEADS_COUNT + FREE_SPACE;
+        public static readonly int DISTINCT_SPACE = (int)((Double)FREE_SPACE * 0.75);
         public int value = 0;
         private Dictionary<int, int> beadsValues = new Dictionary<int,int>();
       

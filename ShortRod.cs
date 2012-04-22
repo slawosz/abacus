@@ -13,6 +13,6 @@ namespace PhoneApp1
 {
     public class ShortRod : Rod
     {
-        public static int BEADS_COUNT = 2;
+        public new static virtual int BEADS_COUNT { get { return 2; } }
     }
 }
