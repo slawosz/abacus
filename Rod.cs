@@ -14,12 +14,12 @@ namespace PhoneApp1
     public class Rod
     {
         public static int BEAD_SIZE = 50;
-        public static int BEADS_COUNT = 5;
-        public static int FREE_SPACE = 50;
+        public static int BEADS_COUNT = 7;
+        public static int FREE_SPACE = 70;
         public static int ROD_WIDTH = BEAD_SIZE * BEADS_COUNT + FREE_SPACE;
       
         Canvas rod = new Canvas();
-        Bead[] beads = new Bead[5];
+        Bead[] beads = new Bead[BEADS_COUNT];
 
         public Rod()
         {

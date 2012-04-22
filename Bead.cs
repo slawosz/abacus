@@ -48,11 +48,11 @@ namespace PhoneApp1
         {
             this.leftBead = leftBead;
         }
-
+       
         private void SetColor(int left)
         {
             Color c = new Color();
-            c.R = (byte)left;
+            c.R = (byte)((byte)left % (byte)255);
             c.B = (byte)((40 * (byte)left) % (byte)255);
             c.G = 255;
             c.A = 200;
@@ -78,7 +78,7 @@ namespace PhoneApp1
             }
             else
             {
-             //   MoveLeft(x);
+              MoveLeft(x);
             }
                 
         }
@@ -142,6 +142,65 @@ namespace PhoneApp1
             }
         }
 
+        // ==========================================================================
+        // Moving left logic
+        // ==========================================================================
+        
+        protected void MoveLeft(Double x)
+        {
+            MoveRequest request = new MoveRequest(this, x);
+            this.SendMoveLeftRequest(request);
+        }
+
+        private void SendMoveLeftRequest(MoveRequest request)
+        {
+            if (CanDecideAboutMoveLeft(request.x)) {
+                if (IsMoveLeftPossible(request.x))
+                {
+                    request.accepted = true;
+                    MoveBy(request.x);
+                }
+                request.processed = true;
+                if (this != request.sender)
+                {
+                    rightBead.SendMoveLeftRequest(request);
+                }
+            }
+            else 
+            {
+                if (request.accepted)
+                {
+                    MoveBy(request.x);
+                }
+                if (this != request.sender || !request.processed)
+                {
+                    if (request.processed)
+                    {
+                        rightBead.SendMoveLeftRequest(request);
+                    }
+                    else
+                    {
+                        leftBead.SendMoveLeftRequest(request);
+                    }
+                }
+            }
+        }
+
+        private bool CanDecideAboutMoveLeft(Double x) {
+            return leftBead == null || ((Canvas.GetLeft(leftBead.GetBead()) + Rod.BEAD_SIZE) < Canvas.GetLeft(GetBead()) + x);
+        }
+
+        private bool IsMoveLeftPossible(Double x) {
+            if (leftBead == null) 
+            {
+                return (Canvas.GetLeft(GetBead()) + x) >= 0;
+            }
+            else 
+            {
+                return ((Canvas.GetLeft(leftBead.GetBead()) + Rod.BEAD_SIZE) < Canvas.GetLeft(GetBead()) + x);
+            }
+        }
+       
         public void MoveBy(Double x) 
         {
             Canvas.SetLeft(this.GetBead(), Canvas.GetLeft(this.GetBead()) + x);
