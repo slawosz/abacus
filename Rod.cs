@@ -14,27 +14,34 @@ namespace PhoneApp1
 {
     public class Rod
     {
-        public static readonly int BEAD_SIZE = 50;
-        public static virtual int BEADS_COUNT { get { return 4; } }
-        public static readonly int FREE_SPACE = 70;
-        public static readonly int ROD_WIDTH = BEAD_SIZE * BEADS_COUNT + FREE_SPACE;
-        public static readonly int DISTINCT_SPACE = (int)((Double)FREE_SPACE * 0.75);
-        public int value = 0;
+        public int beadSize;
+        public int beadsCount;
+        public int freeSpace;
+        public int value;
+        public int rodWidth;
+        public int distinctSpace;
         private Dictionary<int, int> beadsValues = new Dictionary<int,int>();
       
         Canvas rod = new Canvas();
-        Bead[] beads = new Bead[BEADS_COUNT];
+        Bead[] beads;
 
-        public Rod()
+        public Rod(int beadsCount)
         {
+            beadSize = 50;
+            this.beadsCount = beadsCount;
+            freeSpace = 70;
+            value = 0;
+            beads = new Bead[beadsCount];
+            rodWidth = beadSize * beadsCount + freeSpace;
+            distinctSpace = (int)((Double)freeSpace * 0.75);
             BuildBeads();
             LinkBeads();
             AddBeadsToRod();
             PrepareBeadsValuesDictionary();
             SetColor();
             Canvas.SetLeft(rod, 0);
-            rod.Width = ROD_WIDTH;
-            rod.Height = BEAD_SIZE;
+            rod.Width = rodWidth;
+            rod.Height = beadSize;
         }
 
         public Canvas GetRod()
@@ -44,15 +51,15 @@ namespace PhoneApp1
 
         private void BuildBeads()
         {
-            for (int i = 0; i < BEADS_COUNT; i++)
+            for (int i = 0; i < beadsCount; i++)
             {
-                beads[i] = new Bead(this, BEAD_SIZE, BEAD_SIZE * i);
+                beads[i] = new Bead(this, i);
             }
         }
 
         private void LinkBeads()
         {
-            for (int i = 1; i < BEADS_COUNT; i++)
+            for (int i = 1; i < beadsCount; i++)
             {
                 beads[i - 1].SetRightBead(beads[i]);   
             }
@@ -60,7 +67,7 @@ namespace PhoneApp1
 
         private void AddBeadsToRod()
         {
-            for (int i = 0; i < BEADS_COUNT; i++)
+            for (int i = 0; i < beadsCount; i++)
             {
                 rod.Children.Add(beads[i].GetBead());
             }
@@ -79,8 +86,8 @@ namespace PhoneApp1
 
         private void PrepareBeadsValuesDictionary()
         {
-            int actualValue = BEADS_COUNT;
-            for (int i = 0; i < BEADS_COUNT; i++)
+            int actualValue = beadsCount;
+            for (int i = 0; i < beadsCount; i++)
             {
                 beadsValues.Add(i, actualValue);
                 actualValue--;
@@ -90,22 +97,25 @@ namespace PhoneApp1
         public void SetRodValue() 
         {
             value = 0;
-            for (int i = 0; i < BEADS_COUNT - 1; i++)
+            for (int i = 0; i < beadsCount - 1; i++)
             {
-                if (i == 0 && Canvas.GetLeft(beads[i].GetBead()) > DISTINCT_SPACE)
+                if (i == 0 && Canvas.GetLeft(beads[i].GetBead()) > distinctSpace)
                 {
                     beadsValues.TryGetValue(i, out value);
                 }
                 else
                 {
-                    if ((Canvas.GetLeft(beads[i + 1].GetBead()) - (Canvas.GetLeft(beads[i].GetBead()) + BEAD_SIZE)) > DISTINCT_SPACE)
+                    if ((Canvas.GetLeft(beads[i + 1].GetBead()) - (Canvas.GetLeft(beads[i].GetBead()) + beadSize)) > distinctSpace)
                     {
                         beadsValues.TryGetValue(i + 1, out value);
                     }
                 }
             }
+            if (beadsCount == 1 && Canvas.GetLeft(beads[0].GetBead()) > distinctSpace)
+            {
+                value = 1;
+            }
             System.Diagnostics.Debug.WriteLine(value.ToString());
-            System.Diagnostics.Debug.WriteLine(beadsValues.ToString());
         }
 
     }

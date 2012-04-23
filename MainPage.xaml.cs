@@ -19,10 +19,11 @@ namespace PhoneApp1
         public MainPage()
         {
             InitializeComponent();
-            Rod rod = new Rod();    
-            Rod shortRod = new ShortRod();    
-            Container.Children.Add(rod.GetRod());
-            Container.Children.Add(shortRod.GetRod());
+            for (int i = 0; i < 6; i++)
+            {
+                Rod rod = new Rod(i + 1);
+                Container.Children.Add(rod.GetRod());
+            }
         }
 
         public void PhoneApplicationPage_IsEnabledChanged()

@@ -19,14 +19,13 @@ namespace PhoneApp1
         private Bead rightBead;
         private Rod rod;
 
-        public Bead(Rod rod, int size, int left)
+        public Bead(Rod rod, int index)
         {
             this.rod = rod;
             bead = new Canvas();
-            Canvas.SetLeft(bead, left);
-            bead.Width = size;
-            bead.Height = size;
-            SetColor(left);
+            Canvas.SetLeft(bead, rod.beadSize * index);
+            bead.Width = bead.Height = rod.beadSize;
+            SetColor(rod.beadSize * index);
             BindManipulationEvent();
         }
 
@@ -126,17 +125,17 @@ namespace PhoneApp1
         }
 
         private bool CanDecideAboutMoveRight(Double x) {
-            return rightBead == null || ((Canvas.GetLeft(GetBead()) + Rod.BEAD_SIZE + x) < Canvas.GetLeft(rightBead.GetBead()));
+            return rightBead == null || ((Canvas.GetLeft(GetBead()) + rod.beadSize + x) < Canvas.GetLeft(rightBead.GetBead()));
         }
 
         private bool IsMoveRightPossible(Double x) {
             if (rightBead == null) 
             {
-                return (Canvas.GetLeft(GetBead()) + x + Rod.BEAD_SIZE) <= Rod.ROD_WIDTH;
+                return (Canvas.GetLeft(GetBead()) + x + rod.beadSize) <= rod.rodWidth;
             }
             else 
             {
-                return ((Canvas.GetLeft(GetBead()) + Rod.BEAD_SIZE + x) < Canvas.GetLeft(rightBead.GetBead()));
+                return ((Canvas.GetLeft(GetBead()) + rod.beadSize + x) < Canvas.GetLeft(rightBead.GetBead()));
             }
         }
 
@@ -185,7 +184,7 @@ namespace PhoneApp1
         }
 
         private bool CanDecideAboutMoveLeft(Double x) {
-            return leftBead == null || ((Canvas.GetLeft(leftBead.GetBead()) + Rod.BEAD_SIZE) < Canvas.GetLeft(GetBead()) + x);
+            return leftBead == null || ((Canvas.GetLeft(leftBead.GetBead()) + rod.beadSize) < Canvas.GetLeft(GetBead()) + x);
         }
 
         private bool IsMoveLeftPossible(Double x) {
@@ -195,7 +194,7 @@ namespace PhoneApp1
             }
             else 
             {
-                return ((Canvas.GetLeft(leftBead.GetBead()) + Rod.BEAD_SIZE) < Canvas.GetLeft(GetBead()) + x);
+                return ((Canvas.GetLeft(leftBead.GetBead()) + rod.beadSize) < Canvas.GetLeft(GetBead()) + x);
             }
         }
        
