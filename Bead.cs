@@ -77,7 +77,7 @@ namespace PhoneApp1
               MoveLeft(x);
             }
 
-            rod.SetRodValue();
+            rod.UpdateRodValue();
         }
 
         // ==========================================================================

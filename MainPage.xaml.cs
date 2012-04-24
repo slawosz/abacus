@@ -16,14 +16,13 @@ namespace PhoneApp1
     public partial class MainPage : PhoneApplicationPage
     {
         // Constructor
+        Abacus abacus;
         public MainPage()
         {
             InitializeComponent();
-            for (int i = 0; i < 6; i++)
-            {
-                Rod rod = new Rod(i + 1);
-                Container.Children.Add(rod.GetRod());
-            }
+            abacus = new Abacus(9);
+
+            Container.Children.Add(abacus.GetContainer());
         }
 
         public void PhoneApplicationPage_IsEnabledChanged()
@@ -32,6 +31,11 @@ namespace PhoneApp1
 
         private void LayoutRoot_KeyUp(object sender, KeyEventArgs e)
         {
+        }
+
+        private void PageTitle_Tap(object sender, GestureEventArgs e)
+        {
+            PageTitle.Text = abacus.GetValue().ToString();
         }
 
     }

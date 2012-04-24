@@ -94,7 +94,12 @@ namespace PhoneApp1
             }
         }
 
-        public void SetRodValue() 
+        public int GetRodValue()
+        {
+            return value;
+        }
+
+        public void UpdateRodValue() 
         {
             value = 0;
             for (int i = 0; i < beadsCount - 1; i++)
@@ -115,7 +120,6 @@ namespace PhoneApp1
             {
                 value = 1;
             }
-            System.Diagnostics.Debug.WriteLine(value.ToString());
         }
 
     }
