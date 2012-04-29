@@ -52,6 +52,14 @@ namespace PhoneApp1
             return value;
         }
 
+        public void Reset()
+        {
+            for (int i = 0; i < rowsCount; i++)
+            {
+                rows[i].Reset();
+            }
+        }
+
 
     }
 }

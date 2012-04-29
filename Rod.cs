@@ -122,5 +122,17 @@ namespace PhoneApp1
             }
         }
 
+        public void Reset()
+        {
+
+            for (int i = 0; i < beadsCount; i++)
+            {
+                lock(beads[i])
+                {
+                    beads[i].MoveBy(-(Canvas.GetLeft(beads[i].GetBead()) - (beadSize * i)));
+                }
+            }
+        }
+
     }
 }

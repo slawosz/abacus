@@ -50,6 +50,9 @@
   <ItemGroup>
     <Reference Include="Microsoft.Phone" />
     <Reference Include="Microsoft.Phone.Interop" />
+    <Reference Include="ShakeGestures">
+      <HintPath>..\..\..\..\..\Downloads\Shake gestures library\ShakeGestures\ShakeGesturesSample\Bin\Debug\ShakeGestures.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />

@@ -47,5 +47,11 @@ namespace PhoneApp1
             return (value + bottomRod.GetRodValue()) * multiplicity;
         }
 
+        public void Reset()
+        {
+            bottomRod.Reset();
+            upperRod.Reset();
+        }
+
     }
 }

@@ -1,0 +1,15 @@
+C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\Bin\Release\ApplicationIcon.png
+C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\Bin\Release\Background.png
+C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\Bin\Release\PhoneApp1.dll
+C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\Bin\Release\PhoneApp1.pdb
+C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\Bin\Release\AppManifest.xaml
+C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\Bin\Release\PhoneApp1.xap
+C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\obj\Release\ResolveAssemblyReference.cache
+C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\obj\Release\App.g.i.cs
+C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\obj\Release\MainPage.g.i.cs
+C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\obj\Release\PhoneApp1.g.resources
+C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\obj\Release\PhoneApp1.dll
+C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\obj\Release\PhoneApp1.pdb
+C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\obj\Release\XapCacheFile.xml
+C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\Bin\Release\ShakeGestures.dll
+C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\Bin\Release\ShakeGestures.pdb

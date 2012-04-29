@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
+using ShakeGestures;
 
 namespace PhoneApp1
 {
@@ -17,12 +18,25 @@ namespace PhoneApp1
     {
         // Constructor
         Abacus abacus;
+        public static bool shaked = false;
+
         public MainPage()
         {
             InitializeComponent();
             abacus = new Abacus(9);
+            ShakeGesturesHelper.Instance.ShakeGesture += new EventHandler<ShakeGestureEventArgs>(Instance_ShakeGesture);
 
+            ShakeGesturesHelper.Instance.MinimumRequiredMovesForShake = 3;
+            ShakeGesturesHelper.Instance.Active = true;
             Container.Children.Add(abacus.GetContainer());
+        }
+
+        private void Instance_ShakeGesture(object sender, ShakeGestureEventArgs e)
+        {
+            Deployment.Current.Dispatcher.BeginInvoke(() =>
+            {
+                abacus.Reset();
+            });
         }
 
         public void PhoneApplicationPage_IsEnabledChanged()

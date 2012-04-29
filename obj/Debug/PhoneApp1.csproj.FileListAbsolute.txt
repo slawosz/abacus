@@ -11,3 +11,5 @@ C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\obj\Debu
 C:\Users\slawosz\Documents\Visual Studio 2010\Projects\Abacus\PhoneApp1\Bin\Debug\AppManifest.xaml
 C:\Users\slawosz\Documents\Visual Studio 2010\Projects\Abacus\PhoneApp1\Bin\Debug\PhoneApp1.xap
 C:\Users\slawosz\Documents\Visual Studio 2010\Projects\Abacus\PhoneApp1\obj\Debug\XapCacheFile.xml
+C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\Bin\Debug\ShakeGestures.dll
+C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\Bin\Debug\ShakeGestures.pdb
