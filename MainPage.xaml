@@ -18,16 +18,25 @@
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+        <StackPanel x:Name="ButtonPanel" Grid.Row="0" Margin="0,0,0,2">
+            <Button x:Name="Button" Tap="Button_Tap">Start Game</Button>
+        </StackPanel>
+        <StackPanel x:Name="TitlePanel" Grid.Row="2" Margin="0,0,0,2">
             <TextBlock x:Name="PageTitle" Text="0" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Tap="PageTitle_Tap" />
+        </StackPanel>
+        <StackPanel x:Name="ProgressBarPanel" Grid.Row="1" Margin="1,1,0,2">
+            <ProgressBar x:Name="ProgressBar" Value="200"  Margin="10" Maximum="200" 
+            Height="15" IsIndeterminate="False" />
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+        <Grid x:Name="ContentPanel" Grid.Row="3" Margin="12,0,12,0">
             <StackPanel x:Name="Container" Grid.Row="0" Margin="12,17,0,28">
             </StackPanel>
         </Grid>
