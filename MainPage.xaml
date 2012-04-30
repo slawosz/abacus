@@ -28,7 +28,7 @@
             <Button x:Name="Button" Tap="Button_Tap">Start Game</Button>
         </StackPanel>
         <StackPanel x:Name="TitlePanel" Grid.Row="2" Margin="0,0,0,2">
-            <TextBlock x:Name="PageTitle" Text="0" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Tap="PageTitle_Tap" />
+            <TextBlock x:Name="PageTitle" Text="0" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" />
         </StackPanel>
         <StackPanel x:Name="ProgressBarPanel" Grid.Row="1" Margin="1,1,0,2">
             <ProgressBar x:Name="ProgressBar" Value="200"  Margin="10" Maximum="200" 

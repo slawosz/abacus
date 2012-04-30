@@ -19,10 +19,11 @@ namespace PhoneApp1
     {
         // Constructor
         Abacus abacus;
-        public static bool shaked = false;
         DispatcherTimer timer = new DispatcherTimer();
         int level = 40;
         int ticks = 0;
+        public static EventHandler GameStarted;
+        public static EventHandler GameEnded;
 
         public MainPage()
         {
@@ -39,18 +40,37 @@ namespace PhoneApp1
 
             ProgressBar.Maximum = 100;
             ProgressBar.Value = 0;
+            EventBinder.Bind(ref Bead.BeadMoved, UpdateScore);
+            // Bead.BeadMoved += new EventHandler(UpdateScore);
         }
 
+        public void OnGameStarted(EventArgs e)
+        {
+            if (GameStarted != null)
+            {
+                GameStarted(this, e);
+            }
+        }
+        
+        public void OnGameEnded(EventArgs e)
+        {
+            if (GameEnded != null)
+            {
+                GameEnded(this, e);
+            }
+        }
         void StartGame()
         {
+            abacus.Reset();
             timer.Start();
+            OnGameStarted(EventArgs.Empty);
         }
 
         void StopGame()
         {
             timer.Stop();
             ProgressBar.Value = 0;
-            
+            OnGameEnded(EventArgs.Empty);
         }
 
         void TimerTick(object sender, EventArgs e)
@@ -80,7 +100,7 @@ namespace PhoneApp1
         {
         }
 
-        private void PageTitle_Tap(object sender, GestureEventArgs e)
+        private void UpdateScore(object sender, EventArgs e)
         {
             PageTitle.Text = abacus.GetValue().ToString();
         }

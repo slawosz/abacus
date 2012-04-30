@@ -29,7 +29,7 @@ namespace PhoneApp1
             for (int i = rowsCount - 1; i >= 0; i--)
             {
                 multiplicity = multiplicity / 10;
-                System.Diagnostics.Debug.WriteLine(multiplicity);
+                // System.Diagnostics.Debug.WriteLine(multiplicity);
                 rows[i] = new Row(multiplicity);
                 Canvas spacer = new Canvas();
                 spacer.Height = 2;

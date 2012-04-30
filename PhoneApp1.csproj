@@ -67,6 +67,7 @@
     </Compile>
     <Compile Include="Bead.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="EventBinder.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

@@ -42,6 +42,7 @@ namespace PhoneApp1
             Canvas.SetLeft(rod, 0);
             rod.Width = rodWidth;
             rod.Height = beadSize;
+            EventBinder.Bind(ref Bead.BeadMoved, UpdateRodValue);
         }
 
         public Canvas GetRod()
@@ -99,7 +100,7 @@ namespace PhoneApp1
             return value;
         }
 
-        public void UpdateRodValue() 
+        public void UpdateRodValue(object sender, EventArgs e) 
         {
             value = 0;
             for (int i = 0; i < beadsCount - 1; i++)

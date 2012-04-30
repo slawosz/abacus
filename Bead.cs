@@ -18,6 +18,8 @@ namespace PhoneApp1
         private Bead leftBead;
         private Bead rightBead;
         private Rod rod;
+        public static EventHandler BeadMoved;
+        private bool locked = true;
 
         public Bead(Rod rod, int index)
         {
@@ -27,6 +29,8 @@ namespace PhoneApp1
             bead.Width = bead.Height = rod.beadSize;
             SetColor(rod.beadSize * index);
             BindManipulationEvent();
+            EventBinder.Bind(ref MainPage.GameStarted, UnlockBead);
+            EventBinder.Bind(ref MainPage.GameEnded, LockBead);
         }
 
         public Canvas GetBead() 
@@ -66,8 +70,22 @@ namespace PhoneApp1
             MoveBead(x);
         }
 
+        private void LockBead(object sender, EventArgs e)
+        {
+            locked = true;
+        }
+
+        private void UnlockBead(object sender, EventArgs e)
+        {
+            locked = false;
+        }
+
         private void MoveBead(Double x)
         {
+            if (locked)
+            {
+                return;
+            }
             if (x > 0)
             {
                 MoveRight(x);
@@ -77,7 +95,19 @@ namespace PhoneApp1
               MoveLeft(x);
             }
 
-            rod.UpdateRodValue();
+            OnBeadMoved(EventArgs.Empty);
+        }
+
+        public void OnBeadMoved(EventArgs args)
+        {
+            if (BeadMoved != null)
+            {
+                PhoneApp1.Bead.BeadMoved(this, args);
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("none :(");
+            }
         }
 
         // ==========================================================================
