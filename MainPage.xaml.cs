@@ -22,8 +22,10 @@ namespace PhoneApp1
         DispatcherTimer timer = new DispatcherTimer();
         int level = 40;
         int ticks = 0;
+        int numberToGuess;
         public static EventHandler GameStarted;
         public static EventHandler GameEnded;
+        bool gameWon;
 
         public MainPage()
         {
@@ -40,7 +42,7 @@ namespace PhoneApp1
 
             ProgressBar.Maximum = 100;
             ProgressBar.Value = 0;
-            EventBinder.Bind(ref Bead.BeadMoved, UpdateScore);
+            EventBinder.Bind(ref Bead.BeadMoved, CheckIfNumberGuessed);
             // Bead.BeadMoved += new EventHandler(UpdateScore);
         }
 
@@ -61,16 +63,30 @@ namespace PhoneApp1
         }
         void StartGame()
         {
+            gameWon = false;
             abacus.Reset();
+            ticks = 0;
             timer.Start();
+            ProgressBar.Value = 0;
+            DrawNumberToGuess();
             OnGameStarted(EventArgs.Empty);
+        }
+
+        private void DrawNumberToGuess()
+        {
+            Random random = new Random();
+            numberToGuess = random.Next(0, 9999);
+            Number.Text = numberToGuess.ToString();
         }
 
         void StopGame()
         {
             timer.Stop();
-            ProgressBar.Value = 0;
             OnGameEnded(EventArgs.Empty);
+            if (!gameWon)
+            {
+                MessageBox.Show("You loose!\n :(");
+            }
         }
 
         void TimerTick(object sender, EventArgs e)
@@ -100,9 +116,14 @@ namespace PhoneApp1
         {
         }
 
-        private void UpdateScore(object sender, EventArgs e)
+        private void CheckIfNumberGuessed(object sender, EventArgs e)
         {
-            PageTitle.Text = abacus.GetValue().ToString();
+            if (abacus.GetValue() == numberToGuess)
+            {
+                MessageBox.Show("You won!");
+                gameWon = true;
+                StopGame();
+            }
         }
 
         private void Button_Tap(object sender, GestureEventArgs e)
