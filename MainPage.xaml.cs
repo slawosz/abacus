@@ -12,6 +12,7 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using ShakeGestures;
 using System.Windows.Threading;
+using System.Windows.Controls.Primitives;
 
 namespace PhoneApp1
 {
@@ -26,12 +27,15 @@ namespace PhoneApp1
         public static EventHandler GameStarted;
         public static EventHandler GameEnded;
         bool gameWon;
+        SettingsWindow settingsWindow;
+        public int maxNumber = 999;
 
         public MainPage()
         {
             InitializeComponent();
             abacus = new Abacus(9);
             ShakeGesturesHelper.Instance.ShakeGesture += new EventHandler<ShakeGestureEventArgs>(Instance_ShakeGesture);
+            settingsWindow = new SettingsWindow(this);
 
             ShakeGesturesHelper.Instance.MinimumRequiredMovesForShake = 3;
             ShakeGesturesHelper.Instance.Active = true;
@@ -75,7 +79,7 @@ namespace PhoneApp1
         private void DrawNumberToGuess()
         {
             Random random = new Random();
-            numberToGuess = random.Next(0, 9999);
+            numberToGuess = random.Next(0, maxNumber);
             Number.Text = numberToGuess.ToString();
         }
 
@@ -128,9 +132,15 @@ namespace PhoneApp1
 
         private void Button_Tap(object sender, GestureEventArgs e)
         {
-
             StartGame();
         }
+
+        private void Show_SettingsWindow(object sender, GestureEventArgs e)
+        {
+            settingsWindow.Show();
+        }
+        
+        // private void Button_Tap(object sender, GestureEventArgs e)
 
     }
 }

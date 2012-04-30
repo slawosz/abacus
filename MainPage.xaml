@@ -20,13 +20,14 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="600"/>
+            <RowDefinition Height="500"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="ButtonPanel" Grid.Row="0" Margin="0,0,0,2">
             <Button x:Name="Button" Tap="Button_Tap">Start Game</Button>
+            <Button x:Name="SettingsButton" Tap="Show_SettingsWindow">Settings</Button>
         </StackPanel>
         <StackPanel x:Name="NumberPanel" Grid.Row="2" Margin="0,0,0,2">
             <TextBlock x:Name="Number" Text="0" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" />
