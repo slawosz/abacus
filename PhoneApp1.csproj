@@ -73,6 +73,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MoveRequest.cs" />
+    <Compile Include="NumberDecorator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rod.cs" />
     <Compile Include="Row.cs" />

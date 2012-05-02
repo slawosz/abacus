@@ -20,15 +20,20 @@ namespace PhoneApp1
     {
         // Constructor
         Abacus abacus;
-        DispatcherTimer timer = new DispatcherTimer();
-        int level = 40;
-        int ticks = 0;
+        DispatcherTimer timer;
+        Double ticks = 40;
+        Double actualTicks = 0;
         int numberToGuess;
         public static EventHandler GameStarted;
         public static EventHandler GameEnded;
+        bool isGameActive = false;
         bool gameWon;
         SettingsWindow settingsWindow;
         public int maxNumber = 999;
+        public Double gameDuration = 5;
+        public String[] levels = { "Slow", "Moderate", "Fast" };
+        public int[] levelsDuration = { 8, 3, 1 };
+        public int currentLevelIndex = 1;
 
         public MainPage()
         {
@@ -41,7 +46,8 @@ namespace PhoneApp1
             ShakeGesturesHelper.Instance.Active = true;
             Container.Children.Add(abacus.GetContainer());
             timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromMilliseconds(500); //.FromSeconds(2);
+            // timer.Interval = TimeSpan.FromSeconds(gameDuration/ticks);
+            timer.Interval = TimeSpan.FromSeconds(levelsDuration[currentLevelIndex]/ticks);
             timer.Tick += new EventHandler(TimerTick);
 
             ProgressBar.Maximum = 100;
@@ -68,8 +74,9 @@ namespace PhoneApp1
         void StartGame()
         {
             gameWon = false;
+            isGameActive = true;
             abacus.Reset();
-            ticks = 0;
+            actualTicks = 0;
             timer.Start();
             ProgressBar.Value = 0;
             DrawNumberToGuess();
@@ -80,12 +87,13 @@ namespace PhoneApp1
         {
             Random random = new Random();
             numberToGuess = random.Next(0, maxNumber);
-            Number.Text = numberToGuess.ToString();
+            Number.Text = (new NumberDecorator(numberToGuess)).Decorate();
         }
 
         void StopGame()
         {
             timer.Stop();
+            isGameActive = false;
             OnGameEnded(EventArgs.Empty);
             if (!gameWon)
             {
@@ -93,12 +101,18 @@ namespace PhoneApp1
             }
         }
 
+        public void ChangeLevel()
+        {
+            timer.Interval = TimeSpan.FromSeconds(levelsDuration[currentLevelIndex]/ticks);
+        }
+
         void TimerTick(object sender, EventArgs e)
         {
-            ticks++;
-            ProgressBar.Value = ticks * 2;
+            actualTicks++;
+            ProgressBar.Value = actualTicks * 2;
             System.Diagnostics.Debug.WriteLine("timer");
-            if (ticks == level)
+            System.Diagnostics.Debug.WriteLine(actualTicks);
+            if (ticks == actualTicks)
             {
                 StopGame();
             }
@@ -137,7 +151,10 @@ namespace PhoneApp1
 
         private void Show_SettingsWindow(object sender, GestureEventArgs e)
         {
-            settingsWindow.Show();
+            if (!isGameActive)
+            {
+                settingsWindow.Show();
+            }
         }
         
         // private void Button_Tap(object sender, GestureEventArgs e)
