@@ -157,6 +157,13 @@ namespace PhoneApp1
             }
         }
         
+        private void GoToTraining(object sender, GestureEventArgs e)
+        {
+            if (!isGameActive)
+            {
+                NavigationService.Navigate(new Uri("/Training.xaml", UriKind.Relative));
+            }
+        }
         // private void Button_Tap(object sender, GestureEventArgs e)
 
     }

@@ -31,6 +31,8 @@ namespace PhoneApp1
             BindManipulationEvent();
             EventBinder.Bind(ref MainPage.GameStarted, UnlockBead);
             EventBinder.Bind(ref MainPage.GameEnded, LockBead);
+            EventBinder.Bind(ref Training.Started, UnlockBead);
+            EventBinder.Bind(ref Training.Ended, LockBead);
         }
 
         public Canvas GetBead() 

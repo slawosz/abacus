@@ -78,6 +78,9 @@
     <Compile Include="Rod.cs" />
     <Compile Include="Row.cs" />
     <Compile Include="SettingsWindow.cs" />
+    <Compile Include="Training.xaml.cs">
+      <DependentUpon>Training.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowsPhoneControl1.xaml.cs">
       <DependentUpon>WindowsPhoneControl1.xaml</DependentUpon>
     </Compile>
@@ -88,6 +91,10 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Training.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
