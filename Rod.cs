@@ -77,9 +77,9 @@ namespace PhoneApp1
         private void SetColor()
         {
             Color c = new Color();
-            c.R = 255;
-            c.B = 0;
-            c.G = 0;
+            c.R = 88;
+            c.B = 88;
+            c.G = 92;
             c.A = 255;
 
             this.rod.Background = new SolidColorBrush(c); 

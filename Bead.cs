@@ -8,6 +8,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using System.Windows.Media.Imaging;
 
 namespace PhoneApp1
 {
@@ -59,7 +60,12 @@ namespace PhoneApp1
             c.G = 255;
             c.A = 200;
             
-            this.bead.Background = new SolidColorBrush(c); 
+            // this.bead.Background = new SolidColorBrusjjh(c); 
+            ImageBrush brush = new ImageBrush
+            {
+                   ImageSource = new BitmapImage(new Uri("images/red.jpg", UriKind.Relative))
+                 };
+            this.bead.Background = brush;
         }
 
         private void BindManipulationEvent() {
