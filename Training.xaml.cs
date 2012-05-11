@@ -65,12 +65,16 @@ namespace PhoneApp1
             Deployment.Current.Dispatcher.BeginInvoke(() =>
             {
                 abacus.Reset();
+                Number.Text = "0";
             });
         }
 
         private void UpdateValue(object sender, EventArgs e)
         {
-            Number.Text = abacus.GetValue().ToString();
+            Deployment.Current.Dispatcher.BeginInvoke(() =>
+            {
+                Number.Text = abacus.GetValue().ToString();
+            });
         }
 
     }

@@ -136,6 +136,10 @@ namespace PhoneApp1
 
         private void CheckIfNumberGuessed(object sender, EventArgs e)
         {
+            if (!this.isGameActive)
+            {
+                return;
+            }
             if (abacus.GetValue() == numberToGuess)
             {
                 MessageBox.Show("You won!");
