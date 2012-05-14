@@ -215,7 +215,7 @@ namespace PhoneApp1
         }
 
         private bool CanDecideAboutMoveRight(Double x) {
-            return rightBead == null || ((RightEdge() + x) < rightBead.LeftEdge());
+            return rightBead == null || ((RightEdge() + x) <= rightBead.LeftEdge());
         }
 
         private bool IsMoveRightPossible(Double x) {
@@ -225,7 +225,7 @@ namespace PhoneApp1
             }
             else 
             {
-                return (RightEdge() + x) < rightBead.LeftEdge();
+                return (RightEdge() + x) <= rightBead.LeftEdge();
             }
         }
 
@@ -278,7 +278,7 @@ namespace PhoneApp1
         }
 
         private bool CanDecideAboutMoveLeft(Double x) {
-            return leftBead == null || ((Canvas.GetLeft(leftBead.GetBead()) + rod.beadSize) < Canvas.GetLeft(GetBead()) + x);
+            return leftBead == null || ((Canvas.GetLeft(leftBead.GetBead()) + rod.beadSize) <= Canvas.GetLeft(GetBead()) + x);
         }
 
         private bool IsMoveLeftPossible(Double x) {
@@ -288,7 +288,7 @@ namespace PhoneApp1
             }
             else 
             {
-                return ((Canvas.GetLeft(leftBead.GetBead()) + rod.beadSize) < Canvas.GetLeft(GetBead()) + x);
+                return ((Canvas.GetLeft(leftBead.GetBead()) + rod.beadSize) <= Canvas.GetLeft(GetBead()) + x);
             }
         }
        
