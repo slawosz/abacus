@@ -38,6 +38,26 @@ namespace PhoneApp1
             EventBinder.Bind(ref Training.Ended, LockBead);
         }
 
+        protected double RightEdge()
+        {
+            return Canvas.GetLeft(bead) + bead.Width;
+        }
+
+        protected double LeftEdge()
+        {
+            return Canvas.GetLeft(bead);
+        }
+
+        protected double HomePosition()
+        {
+            return index * bead.Width;
+        }
+
+        protected double EdgePosition()
+        {
+            return HomePosition() + rod.freeSpace;
+        }
+
         public Canvas GetBead() 
         {
             return bead;
@@ -90,15 +110,16 @@ namespace PhoneApp1
             Double x = e.TotalManipulation.Translation.X;
             if (x > 0)
             {
-                delta = rod.freeSpace - (Canvas.GetLeft(bead) - (bead.Width * index));
+                delta = rod.freeSpace - (LeftEdge() - HomePosition());
             }
             else
             {
-                delta = (bead.Width * index - Canvas.GetLeft(bead));
+                delta = HomePosition() - LeftEdge();
             }
             MoveBead(delta);
             System.Diagnostics.Debug.WriteLine(x);
             System.Diagnostics.Debug.WriteLine(delta);
+            ShowPositions();
         }
 
         private void LockBead(object sender, EventArgs e)
@@ -194,17 +215,17 @@ namespace PhoneApp1
         }
 
         private bool CanDecideAboutMoveRight(Double x) {
-            return rightBead == null || ((Canvas.GetLeft(GetBead()) + rod.beadSize + x) < Canvas.GetLeft(rightBead.GetBead()));
+            return rightBead == null || ((RightEdge() + x) < rightBead.LeftEdge());
         }
 
         private bool IsMoveRightPossible(Double x) {
             if (rightBead == null) 
             {
-                return (Canvas.GetLeft(GetBead()) + x + rod.beadSize) <= rod.rodWidth;
+                return (RightEdge() + x) <= rod.rodWidth;
             }
             else 
             {
-                return ((Canvas.GetLeft(GetBead()) + rod.beadSize + x) < Canvas.GetLeft(rightBead.GetBead()));
+                return (RightEdge() + x) < rightBead.LeftEdge();
             }
         }
 
@@ -276,5 +297,14 @@ namespace PhoneApp1
             Canvas.SetLeft(this.GetBead(), Canvas.GetLeft(this.GetBead()) + x);
         }
 
+        private void ShowPositions()
+        {
+            string str = "";
+            for(int i = 0; i < rod.beadsCount; i++)
+            {
+                str += index+ ": " + rod.beads[i].LeftEdge() + ", " + rod.beads[i].RightEdge() + "; ";
+            }
+            System.Diagnostics.Debug.WriteLine(str);
+        }
     }
 }

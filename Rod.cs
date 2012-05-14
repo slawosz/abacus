@@ -23,7 +23,7 @@ namespace PhoneApp1
         private Dictionary<int, int> beadsValues = new Dictionary<int,int>();
       
         Canvas rod = new Canvas();
-        Bead[] beads;
+        public Bead[] beads;
 
         public Rod(int beadsCount)
         {
