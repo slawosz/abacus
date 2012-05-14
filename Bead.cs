@@ -21,9 +21,11 @@ namespace PhoneApp1
         private Rod rod;
         public static EventHandler BeadMoved;
         private bool locked = true;
+        private int index;
 
         public Bead(Rod rod, int index)
         {
+            this.index = index;
             this.rod = rod;
             bead = new Canvas();
             Canvas.SetLeft(bead, rod.beadSize * index);
@@ -60,16 +62,17 @@ namespace PhoneApp1
             c.G = 255;
             c.A = 200;
             
-            // this.bead.Background = new SolidColorBrusjjh(c); 
+            this.bead.Background = new SolidColorBrush(c); 
             ImageBrush brush = new ImageBrush
             {
                    ImageSource = new BitmapImage(new Uri("images/red.jpg", UriKind.Relative))
                  };
-            this.bead.Background = brush;
+            // this.bead.Background = brush;
         }
 
         private void BindManipulationEvent() {
             bead.ManipulationDelta += new EventHandler<ManipulationDeltaEventArgs>(OnMove);
+            bead.ManipulationCompleted += new EventHandler<ManipulationCompletedEventArgs>(OnMoveEnd);
         }
 
         private void OnMove(object sender, ManipulationDeltaEventArgs e)
@@ -78,13 +81,35 @@ namespace PhoneApp1
             MoveBead(x);
         }
 
+        private void OnMoveEnd(object sender, ManipulationCompletedEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("my move");
+            // Double delta = (rod.rodWidth - bead.Width - ((Canvas.GetLeft(bead) - (bead.Width * index))));
+            Double delta;
+            delta = rod.freeSpace - (Canvas.GetLeft(bead) - (bead.Width * index));
+            Double x = e.TotalManipulation.Translation.X;
+            if (x > 0)
+            {
+                delta = rod.freeSpace - (Canvas.GetLeft(bead) - (bead.Width * index));
+            }
+            else
+            {
+                delta = (bead.Width * index - Canvas.GetLeft(bead));
+            }
+            MoveBead(delta);
+            System.Diagnostics.Debug.WriteLine(x);
+            System.Diagnostics.Debug.WriteLine(delta);
+        }
+
         private void LockBead(object sender, EventArgs e)
         {
+            System.Diagnostics.Debug.WriteLine("locked !");
             locked = true;
         }
 
         private void UnlockBead(object sender, EventArgs e)
         {
+            System.Diagnostics.Debug.WriteLine("unlocked !");
             locked = false;
         }
 
@@ -92,10 +117,12 @@ namespace PhoneApp1
         {
             if (locked)
             {
+                System.Diagnostics.Debug.WriteLine("locked :(");
                 return;
             }
             if (x > 0)
             {
+                System.Diagnostics.Debug.WriteLine("lalala :(");
                 MoveRight(x);
             }
             else
@@ -135,6 +162,10 @@ namespace PhoneApp1
                 {
                     request.accepted = true;
                     MoveBy(request.x);
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("no move :(");
                 }
                 request.processed = true;
                 if (this != request.sender)
@@ -194,6 +225,10 @@ namespace PhoneApp1
                 {
                     request.accepted = true;
                     MoveBy(request.x);
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("no move left :(");
                 }
                 request.processed = true;
                 if (this != request.sender)

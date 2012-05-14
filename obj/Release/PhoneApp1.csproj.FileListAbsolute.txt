@@ -13,3 +13,5 @@ C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\obj\Rele
 C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\obj\Release\XapCacheFile.xml
 C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\Bin\Release\ShakeGestures.dll
 C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\Bin\Release\ShakeGestures.pdb
+C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\obj\Release\Training.g.i.cs
+C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\obj\Release\WindowsPhoneControl1.g.i.cs

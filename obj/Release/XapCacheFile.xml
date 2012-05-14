@@ -1,9 +1,9 @@
-﻿<xapCache source="C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\Bin\Release\PhoneApp1.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="4/28/2012 3:21:20 PM">
+﻿<xapCache source="C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\Bin\Release\PhoneApp1.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="5/14/2012 5:56:08 PM">
   <file source="C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\Bin\Release\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="4/28/2012 2:50:11 PM" />
   <file source="C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\Background.png" archivePath="Background.png" lastWriteTime="4/18/2012 5:11:08 PM" />
   <file source="C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\ApplicationIcon.png" archivePath="ApplicationIcon.png" lastWriteTime="4/18/2012 5:11:08 PM" />
-  <file source="C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\obj\Release\PhoneApp1.dll" archivePath="PhoneApp1.dll" lastWriteTime="4/28/2012 3:21:20 PM" />
-  <file source="C:\Users\slawosz\Downloads\Shake gestures library\ShakeGestures\ShakeGestures\Bin\Debug\ShakeGestures.dll" archivePath="ShakeGestures.dll" lastWriteTime="4/28/2012 3:18:51 PM" />
+  <file source="C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\obj\Release\PhoneApp1.dll" archivePath="PhoneApp1.dll" lastWriteTime="5/14/2012 5:56:07 PM" />
+  <file source="C:\Users\slawosz\Downloads\Shake gestures library\ShakeGestures\ShakeGesturesSample\Bin\Debug\ShakeGestures.dll" archivePath="ShakeGestures.dll" lastWriteTime="4/28/2012 3:18:51 PM" />
   <file source="C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\SplashScreenImage.jpg" archivePath="SplashScreenImage.jpg" lastWriteTime="4/18/2012 5:11:08 PM" />
-  <file source="C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\Bin\Release\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="4/28/2012 3:21:20 PM" />
+  <file source="C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\Bin\Release\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="4/30/2012 10:19:35 AM" />
 </xapCache>
