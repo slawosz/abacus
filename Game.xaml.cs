@@ -21,7 +21,7 @@ namespace PhoneApp1
         // Constructor
         Abacus abacus;
         DispatcherTimer timer;
-        Double ticks = 6000;
+        Double ticks = 150;
         Double actualTicks = 0;
         int numberToGuess;
         public static EventHandler GameStarted;
@@ -35,11 +35,11 @@ namespace PhoneApp1
             abacus = new Abacus(9);
             ShakeGesturesHelper.Instance.ShakeGesture += new EventHandler<ShakeGestureEventArgs>(Instance_ShakeGesture);
 
-            ShakeGesturesHelper.Instance.MinimumRequiredMovesForShake = 3;
+            ShakeGesturesHelper.Instance.MinimumRequiredMovesForShake = 7;
             ShakeGesturesHelper.Instance.Active = true;
             Container.Children.Add(abacus.GetContainer());
             timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromMilliseconds(1);
+            timer.Interval = TimeSpan.FromMilliseconds(20);
             timer.Tick += new EventHandler(TimerTick);
 
             ProgressBar.Maximum = 100;
@@ -112,7 +112,7 @@ namespace PhoneApp1
             actualTicks++;
             ProgressBar.Value = (Int32)(actualTicks / (ticks/100));
             //System.Diagnostics.Debug.WriteLine("timer");
-            //System.Diagnostics.Debug.WriteLine(actualTicks);
+            System.Diagnostics.Debug.WriteLine(actualTicks);
             if (ticks == actualTicks)
             {
                 StopGame();
@@ -143,7 +143,7 @@ namespace PhoneApp1
             }
             if (abacus.GetValue() == numberToGuess)
             {
-                MessageBox.Show("You won!");
+                MessageBox.Show("You won! \nYour score is: " + Score());
                 gameWon = true;
                 StopGame();
             }
@@ -163,6 +163,11 @@ namespace PhoneApp1
             {
                 NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
             }
+        }
+
+        private int Score()
+        {
+            return (Int32)(Abacus.rowsCountSettings * (ticks - actualTicks));
         }
 
         protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
