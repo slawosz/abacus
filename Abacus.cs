@@ -13,18 +13,20 @@ namespace PhoneApp1
 {
     public class Abacus
     {
+        public static int rowsCountSettings = 9;
         int rowsCount;
         StackPanel container = new StackPanel();
         Row[] rows;
 
         public Abacus(int rowsCount)
         {
+            rowsCount = Abacus.rowsCountSettings;
             int multiplicity = 1;
             for (int i = 0; i < rowsCount; i++)
             {
                 multiplicity = multiplicity * 10;
             }
-            this.rowsCount = rowsCount;
+            this.rowsCount = Abacus.rowsCountSettings;
             rows = new Row[rowsCount];
             for (int i = rowsCount - 1; i >= 0; i--)
             {

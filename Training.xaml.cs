@@ -19,6 +19,7 @@ namespace PhoneApp1
         Abacus abacus;
         public static EventHandler Started;
         public static EventHandler Ended;
+        public static bool active;
 
         public Training()
         {
@@ -37,6 +38,7 @@ namespace PhoneApp1
         {
             if (Started != null)
             {
+                Training.active = true;
                 Started(this, e);
             }
         }
@@ -45,18 +47,14 @@ namespace PhoneApp1
         {
             if (Ended != null)
             {
+                Training.active = false;
                 Ended(this, e);
             }
         }
 
-        private void GoToGame(object sender, GestureEventArgs e)
-        {
-            OnEnded(EventArgs.Empty);
-            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
-        }
-
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
+            NavigationService.RemoveBackEntry();
             OnStarted(EventArgs.Empty);
         }
 
@@ -75,6 +73,12 @@ namespace PhoneApp1
             {
                 Number.Text = abacus.GetValue().ToString();
             });
+        }
+
+        private void GoToMenu(object sender, GestureEventArgs e)
+        {
+            OnEnded(EventArgs.Empty);
+            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
         }
 
     }

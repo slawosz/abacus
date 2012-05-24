@@ -17,6 +17,11 @@ namespace PhoneApp1
         {
             eventHandler += new EventHandler(target);
         }
+    
+        public static void Clear(ref EventHandler eventHandler)
+        {
+            eventHandler = null;
+        }
 
     }
 }

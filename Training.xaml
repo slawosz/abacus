@@ -17,19 +17,19 @@
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="500"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel x:Name="ButtonPanel" Grid.Row="0" Margin="0,0,0,2">
-            <Button x:Name="BackButton" Tap="GoToGame">Back to game</Button>
+        <StackPanel x:Name="ButtonPanel" Grid.Row="2" Margin="0,0,0,2">
+            <Button x:Name="GoToMenuButton" Tap="GoToMenu">Menu</Button>
         </StackPanel>
-        <StackPanel x:Name="NumberPanel" Grid.Row="1" Margin="0,0,0,2">
+        <StackPanel x:Name="NumberPanel" Grid.Row="0" Margin="0,0,0,2">
             <TextBlock x:Name="Number" Text="0" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" />
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="2" Margin="12,0,12,0">
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <StackPanel x:Name="Container" Grid.Row="0" Margin="12,17,0,28">
             </StackPanel>
         </Grid>

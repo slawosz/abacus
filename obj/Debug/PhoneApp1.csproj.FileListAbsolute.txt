@@ -15,3 +15,6 @@ C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\Bin\Debu
 C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\Bin\Debug\ShakeGestures.pdb
 C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\obj\Debug\WindowsPhoneControl1.g.i.cs
 C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\obj\Debug\Training.g.i.cs
+C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\obj\Debug\Game.g.i.cs
+C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\obj\Debug\Menu.g.i.cs
+C:\Users\slawosz\documents\visual studio 2010\Projects\Abacus\PhoneApp1\obj\Debug\Settings.g.i.cs

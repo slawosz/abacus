@@ -20,6 +20,8 @@ namespace PhoneApp1
         private Bead rightBead;
         private Rod rod;
         public static EventHandler BeadMoved;
+        public static EventHandler BeadTaped;
+        public static String beadImage = "images/red.jpg";
         private bool locked = true;
         private int index;
 
@@ -32,8 +34,8 @@ namespace PhoneApp1
             bead.Width = bead.Height = rod.beadSize;
             SetColor(rod.beadSize * index);
             BindManipulationEvent();
-            EventBinder.Bind(ref MainPage.GameStarted, UnlockBead);
-            EventBinder.Bind(ref MainPage.GameEnded, LockBead);
+            EventBinder.Bind(ref Game.GameStarted, UnlockBead);
+            EventBinder.Bind(ref Game.GameEnded, LockBead);
             EventBinder.Bind(ref Training.Started, UnlockBead);
             EventBinder.Bind(ref Training.Ended, LockBead);
         }
@@ -85,14 +87,15 @@ namespace PhoneApp1
             this.bead.Background = new SolidColorBrush(c); 
             ImageBrush brush = new ImageBrush
             {
-                   ImageSource = new BitmapImage(new Uri("images/red.jpg", UriKind.Relative))
+                   ImageSource = new BitmapImage(new Uri(Bead.beadImage, UriKind.Relative))
                  };
-            // this.bead.Background = brush;
+            this.bead.Background = brush;
         }
 
         private void BindManipulationEvent() {
             bead.ManipulationDelta += new EventHandler<ManipulationDeltaEventArgs>(OnMove);
             bead.ManipulationCompleted += new EventHandler<ManipulationCompletedEventArgs>(OnMoveEnd);
+            bead.Tap += new EventHandler<GestureEventArgs>(OnBeadTaped);
         }
 
         private void OnMove(object sender, ManipulationDeltaEventArgs e)
@@ -124,13 +127,13 @@ namespace PhoneApp1
 
         private void LockBead(object sender, EventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("locked !");
+            //System.Diagnostics.Debug.WriteLine("locked !");
             locked = true;
         }
 
         private void UnlockBead(object sender, EventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("unlocked !");
+            //System.Diagnostics.Debug.WriteLine("unlocked !");
             locked = false;
         }
 
@@ -138,12 +141,12 @@ namespace PhoneApp1
         {
             if (locked)
             {
-                System.Diagnostics.Debug.WriteLine("locked :(");
+                //System.Diagnostics.Debug.WriteLine("locked :(");
                 return;
             }
             if (x > 0)
             {
-                System.Diagnostics.Debug.WriteLine("lalala :(");
+                //System.Diagnostics.Debug.WriteLine("lalala :(");
                 MoveRight(x);
             }
             else
@@ -152,6 +155,18 @@ namespace PhoneApp1
             }
 
             OnBeadMoved(EventArgs.Empty);
+        }
+
+        private void OnBeadTaped(object sender, GestureEventArgs args)
+        {
+            if (BeadTaped != null)
+            {
+                if (!Training.active)
+                {
+                    System.Diagnostics.Debug.WriteLine("taped!");
+                    PhoneApp1.Bead.BeadTaped(this, args);
+                }
+            }
         }
 
         public void OnBeadMoved(EventArgs args)
